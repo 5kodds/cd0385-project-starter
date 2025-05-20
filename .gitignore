@@ -1,3 +1,6 @@
 .ipynb_checkpoints/
-AutoGluonModels/
+project/.ipynb_checkpoints/
+project/AutoGluonModels/
 .kaggle/
+project/.kaggle
+AutoGluonModels/

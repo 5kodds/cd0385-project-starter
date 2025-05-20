@@ -62,7 +62,7 @@ Essentially, the new features helped the model better understand the context of 
 
 ## Hyper parameter tuning
 ### How much better did your model preform after trying different hyper parameters?
-Hyperparameter tuning (HPO) resulted in a further significant improvement in model performance. The Kaggle RMSE score for the HPO model was 0.47655, which is a notable decrease from the feature-engineered model's score of 0.74559.
+Hyperparameter tuning (HPO) resulted in a further significant improvement in model performance. The Kaggle RMSE score for the HPO model was 0.47655, which is a notable decrease from the feature-engineered model's score of 0.49570.
 
 The HPO process involved:
 
@@ -70,7 +70,7 @@ Focusing on GBM (Gradient Boosting Machine, likely LightGBM as used by AutoGluon
 
 Defining search spaces for key hyperparameters:
 
-For NN_TORCH: num_epochs (set to 15), learning_rate (log-uniform between 1e-4 and 1e-2), activation ('relu', 'softrelu', 'tanh'), and dropout_prob (0.0 to 0.5).
+For NN_TORCH: num_epochs (set to 12), learning_rate (log-uniform between 1e-4 and 1e-2), activation ('relu', 'softrelu', 'tanh'), and dropout_prob (0.0 to 0.5).
 
 For GBM: num_boost_round (set to 100) and num_leaves (integer between 26 and 66).
 
@@ -98,11 +98,11 @@ Explore More Models: While GBM and NN_TORCH were specified for HPO, allow AutoGl
 Refined Feature Selection: After creating many features, employ feature selection techniques to retain only the most impactful ones, potentially reducing model complexity and training time.
 
 ### Create a table with the models you ran, the hyperparameters modified, and the kaggle score.
-| model                      | hpo1                                           | hpo2                                                            | hpo3                                                        | score   |
-| :------------------------- | :--------------------------------------------- | :-------------------------------------------------------------- | :---------------------------------------------------------- | :------ |
-| `initial_training`         | `presets="best_quality"`                       | `time_limit=600`                                                | Default AutoGluon models                                    | 1.80128 |
-| `add_features`             | `presets="best_quality"`                       | `time_limit=600`                                                | All engineered features (hours, categorical, temp/wind/humidity/rush_hour flags) | 0.74559 |
-| `hyperparameter_optimized` | Tuned: `GBM`, `NN_TORCH`                       | `num_trials=6`, `searcher='random'`                             | `time_limit=900`, `presets="best_quality"`                    | 0.47655 |
+| model             | hpo1                 | hpo2                 | hpo3                    | score   |
+| :---------------- | :--------------------------------------------- | :-------------------------------------------------------------- | :---------------------------------------------------------- | :------ |
+| `initial_training`         | `presets="best_quality"`                       | `time_limit=600`                                                | Default AutoGluon models                                    | 1.80491 |
+| `add_features`             | `presets="best_quality"`                       | `time_limit=600`                                                | All engineered features (hours, categorical, temp/wind/humidity/rush_hour flags) | 0.73951 |
+| `hyperparameter_optimized` | Tuned: `GBM`, `NN_TORCH`                       | `num_trials=6`, `searcher='random'`                             | `time_limit=900`, `presets="best_quality"`                    | 0.49570 |
 
 ### Create a line plot showing the top model score for the three (or more) training runs during the project.
 
